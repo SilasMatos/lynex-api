@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 const envSchema = z.object({
-  DATABASE_URL: z.string().startsWith("postgres://", {
+  DATABASE_URL: z.string().startsWith("postgresql://", {
     message: "DATABASE_URL must be a valid Postgres URL"
   }),
   BETTER_AUTH_URL: z.string().url(),
