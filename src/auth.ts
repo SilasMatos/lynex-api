@@ -23,7 +23,7 @@ export const auth = betterAuth({
         usePlural: true,
 
     }),
-    trustedOrigins: ["http://localhost:3333", "http://localhost:3000"],
+    trustedOrigins: ["http://localhost:3333", "http://localhost:3000", "https://lynex-cli.vercel.app"],
     advanced: {
         database: {
             generateId: false // Desativa a geração automática de IDs
