@@ -8,7 +8,7 @@ import { betterAuthPlugin, OpenAPI } from "./http/plugins/better-auth";
 const app = new Elysia()
   .use(
     cors({
-      origin: ["http://localhost:3000", "http://localhost:3333"],
+      origin: ["http://localhost:3000", "http://localhost:3333", "https://lynex-cli.vercel.app"],
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
