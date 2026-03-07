@@ -21,7 +21,7 @@ export const auth = betterAuth({
         provider: "pg",
         usePlural: true,
     }),
-    trustedOrigins: ["http://localhost:3333", "http://localhost:3000", "https://lynex-cli.vercel.app"],
+    trustedOrigins: ["http://localhost:3333", "http://localhost:3000", "https://lynex-cli.vercel.app", 'https://lynex-cli-production.up.railway.app'],
     advanced: {
         crossSubDomainCookies: {
             enabled: false,
