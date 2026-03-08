@@ -10,6 +10,11 @@
       "key": "baseUrl",
       "value": "http://localhost:3333",
       "type": "string"
+    },
+    {
+      "key": "workspaceId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -259,6 +264,92 @@
               "path": ["auth", "reset-password"]
             },
             "description": "Redefine a senha do usuário usando o token recebido por email."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Workspaces",
+      "item": [
+        {
+          "name": "Sincronizar Workspace (criar ou atualizar)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Cookie", "value": "{{sessionCookie}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Meu Workspace\",\n  \"folders\": [\n    { \"name\": \"Trabalho\", \"parentId\": null },\n    { \"name\": \"Pessoal\", \"parentId\": null }\n  ],\n  \"links\": [\n    { \"title\": \"GitHub\", \"url\": \"https://github.com\", \"folderId\": null },\n    { \"title\": \"Google\", \"url\": \"https://google.com\", \"folderId\": null }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/sync",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "sync"]
+            },
+            "description": "Cria um novo workspace ou atualiza um existente (passando `id`). Substitui todos os folders e links do workspace pelos enviados. O `workspaceId` retornado pode ser usado para compartilhar via link."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.workspaceId) {",
+                  "    pm.collectionVariables.set('workspaceId', res.workspaceId);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Listar Meus Workspaces",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Cookie", "value": "{{sessionCookie}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces"]
+            },
+            "description": "Lista todos os workspaces do usuário autenticado."
+          },
+          "response": []
+        },
+        {
+          "name": "Ver Workspace Compartilhado (público)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}"]
+            },
+            "description": "Acesso público ao workspace. Qualquer pessoa com o UUID pode visualizar os folders e links. Use este UUID para compartilhar."
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Workspace",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Cookie", "value": "{{sessionCookie}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}"]
+            },
+            "description": "Remove o workspace e todos os seus folders e links (cascade). Apenas o dono pode deletar."
           },
           "response": []
         }

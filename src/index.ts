@@ -4,6 +4,7 @@ import { auth } from "./auth";
 import { openapi } from "@elysiajs/openapi";
 import cors from "@elysiajs/cors";
 import { betterAuthPlugin, OpenAPI } from "./http/plugins/better-auth";
+import { bookmarksPlugin } from "./http/plugins/bookmarks";
 
 const app = new Elysia()
   .use(
@@ -28,6 +29,7 @@ const app = new Elysia()
     })
   )
   .use(betterAuthPlugin)
+  .use(bookmarksPlugin)
   .get("/", () => "Hello Elysia 👋")
   .get(
     "/users/:id",
