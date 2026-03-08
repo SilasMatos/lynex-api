@@ -5,7 +5,7 @@ import { db } from "@/database/client"
 
 export const auth = betterAuth({
     basePath: "/auth",
-    baseURL: process.env.BETTER_AUTH_URL,
+    baseURL: process.env.BETTER_AUTH_URL?.replace(/\/$/, ''),
     secret: process.env.BETTER_AUTH_SECRET,
     socialProviders: {
         google: {
@@ -21,7 +21,13 @@ export const auth = betterAuth({
         provider: "pg",
         usePlural: true,
     }),
-    trustedOrigins: ["http://localhost:3333", "http://localhost:3000", "https://lynex-cli.vercel.app", 'https://lynex-cli-production.up.railway.app'],
+    trustedOrigins: [
+        "http://localhost:3333",
+        "http://localhost:3000",
+        "https://lynex-cli.vercel.app",
+        "https://lynex-cli-production.up.railway.app",
+        "https://lynex-api-production.up.railway.app",
+    ],
     advanced: {
         crossSubDomainCookies: {
             enabled: false,
