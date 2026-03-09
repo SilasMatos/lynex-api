@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
-import { openAPI, oAuthProxy } from "better-auth/plugins"
+import { openAPI } from "better-auth/plugins"
 import { db } from "@/database/client"
 
 export const auth = betterAuth({
@@ -16,7 +16,6 @@ export const auth = betterAuth({
     },
     plugins: [
         openAPI(),
-        oAuthProxy({ productionURL: 'https://lynex-cli.vercel.app' }),
     ],
     database: drizzleAdapter(db, {
         provider: "pg",
