@@ -15,7 +15,7 @@ export const auth = betterAuth({
     },
     plugins: [
         openAPI(),
-    oAuthProxy({ productionURL: 'https://lynex-cli.vercel.app' }),
+        oAuthProxy({ productionURL: 'https://lynex-api-production.up.railway.app' }),
     ],
     database: drizzleAdapter(db, {
         provider: "pg",
