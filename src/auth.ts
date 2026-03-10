@@ -11,7 +11,7 @@ export const auth = betterAuth({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
             accessType: "offline",
-            redirectURI: process.env.GOOGLE_REDIRECT_URI,
+       
         },
     },
     plugins: [
@@ -22,16 +22,16 @@ export const auth = betterAuth({
         usePlural: true,
         transaction: true,
     }),
-    trustedOrigins: [
-        "http://localhost:3333",
-        "http://localhost:3000",
-        "https://lynex-cli.vercel.app",
-        "https://lynex-cli-production.up.railway.app",
-        "https://lynex-api-production.up.railway.app",
-    ],
+   origin: [
+  "http://localhost:3000",
+  "http://localhost:3333",
+  "https://lynex-cli.vercel.app",
+  "https://lynex-cli-production.up.railway.app",
+  "https://lynex-api-production.up.railway.app",
+],
     advanced: {
         crossSubDomainCookies: {
-            enabled: false,
+            enabled: true,
         },
         defaultCookieAttributes: {
             sameSite: "none",
