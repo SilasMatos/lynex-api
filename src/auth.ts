@@ -22,13 +22,13 @@ export const auth = betterAuth({
         usePlural: true,
         transaction: true,
     }),
-   origin: [
-  "http://localhost:3000",
-  "http://localhost:3333",
-  "https://lynex-cli.vercel.app",
-  "https://lynex-cli-production.up.railway.app",
-  "https://lynex-api-production.up.railway.app",
-],
+    trustedOrigins: [
+        "http://localhost:3333",
+        "http://localhost:3000",
+        "https://lynex-cli.vercel.app",
+        "https://lynex-cli-production.up.railway.app",
+        "https://lynex-api-production.up.railway.app",
+    ],
     advanced: {
         crossSubDomainCookies: {
             enabled: true,
