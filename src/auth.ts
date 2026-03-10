@@ -22,6 +22,10 @@ export const auth = betterAuth({
         usePlural: true,
         transaction: true,
     }),
+    accounts: {
+        skipStateCookieCheck: true,
+    },
+            
     trustedOrigins: [
         "http://localhost:3333",
         "http://localhost:3000",
