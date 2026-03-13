@@ -9,7 +9,7 @@ import { bookmarksPlugin } from "./http/plugins/bookmarks";
 const app = new Elysia()
   .use(
     cors({
-      origin: ["http://localhost:3000", "http://localhost:3333", "https://lynex-cli.vercel.app", 'https://lynex-cli-production.up.railway.app'],
+      origin: ["http://localhost:3000", "http://localhost:3333", "https://dev.silasmatos.com.br", "https://lynex-cli.vercel.app", 'https://lynex-cli-production.up.railway.app'],
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
@@ -57,7 +57,7 @@ const app = new Elysia()
       },
     }
   )
-  .listen(3333);
+  .listen(Number(process.env.PORT ?? 3333));
 
 console.log(
   `🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`
